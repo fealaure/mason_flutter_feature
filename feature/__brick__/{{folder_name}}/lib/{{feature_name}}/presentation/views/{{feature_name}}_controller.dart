@@ -1,6 +1,6 @@
-class {{name.pascalCase()}}Controller extends BaseStateNotifier<{{name.pascalCase()}}State> {
+class {{feature_name.pascalCase()}}Controller extends BaseStateNotifier<{{feature_name.pascalCase()}}State> {
   
-  {{name.pascalCase()}}(this.container) : super(const {{name.pascalCase()}}State()) {
+  {{feature_name.pascalCase()}}(this.container) : super(const {{feature_name.pascalCase()}}State()) {
     _initializeApiHandler();
     Future.microtask(() async {
       await _loadStrings();
