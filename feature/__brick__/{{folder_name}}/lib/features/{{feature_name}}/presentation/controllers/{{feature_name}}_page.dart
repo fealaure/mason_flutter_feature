@@ -5,8 +5,8 @@ class {{feature_name.pascalCase()}}View extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context) {
-    final {{feature_name}}State = ref.watch({{feature_name}}Provider);
-    final {{feature_name}}Controller = ref.read({{feature_name}}Provider.notifier);
+    final {{feature_name.camelCase()}}State = ref.watch({{feature_name.pascalCase()}}Provider);
+    final {{feature_name.camelCase()}}Controller = ref.read({{feature_name.pascalCase()}}Provider.notifier);
 
     return Scaffold(
       appBar: AppBar(
