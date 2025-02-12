@@ -1,4 +1,4 @@
-class {{feature_name.pascalCase()}}Controller extends BaseStateNotifier<{{feature_name.pascalCase()}}State> {
+class {{feature_name.pascalCase()}}Notifier extends BaseStateNotifier<{{feature_name.pascalCase()}}State> {
   
   {{feature_name.pascalCase()}}Controller(this.container) : super(const {{feature_name.pascalCase()}}State()) {
     _initializeApiHandler();
