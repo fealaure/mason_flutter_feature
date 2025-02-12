@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class {{feature_name.pascalCase()}}View extends HookConsumerWidget {
-  const {{feature_name.pascalCase()}}View({Key? key}) : super(key: key);
+class {{feature_name.pascalCase()}}Page extends HookConsumerWidget {
+  const {{feature_name.pascalCase()}}Page({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
