@@ -1,47 +1,33 @@
-class {{feature_name.pascalCase()}}Notifier extends BaseStateNotifier<{{feature_name.pascalCase()}}State> {
-  final ProviderContainer container;
-  ApiHandler? _apiHandler;
-  Map<dynamic, String>? _strings;
-  
-  {{feature_name.pascalCase()}}Notifier(this.container) : super(const {{feature_name.pascalCase()}}State()) {
-    _initializeApiHandler();
-    Future.microtask(() async {
-      await _loadStrings();
-    });
+class {{feature_name.pascalCase()}}Notifier extends BaseStateNotifier<{{feature_name.pascalCase()}}State>
+  with ControllerInitializationMixin<{{feature_name.pascalCase()}}State> {
+  final ProviderContainer _container;
+
+  @override
+  ProviderContainer get container => _container;
+
+  {{feature_name.pascalCase()}}Notifier(this._container) : super(const {{feature_name.pascalCase()}}State.loading()) {
+  initializeController();
   }
 
-  Future<void> _loadStrings() async {
-    final stringsNotifier = container.read(allStringsNotifierProvider.notifier);
-    await stringsNotifier.loadStrings();
-    if (!stringsNotifier.mounted) return;
-
-    final loadedStrings = stringsNotifier.state;
-    final updatedStrings = {
-      ...?_strings,
-      ...Map.fromEntries(
-        FirestoreKeys.values.where((key) => loadedStrings.containsKey(key)).map((key) => MapEntry(key, loadedStrings[key]!)),
+  @override
+  void updateStateWithStrings(Map<dynamic, String>? strings) {
+    safeUpdate(() => state = state.maybeWhen(
+      data: (data) => {{feature_name.pascalCase()}}State.data(
+        data.copyWith(strings: strings ?? {}),
       ),
-    };
-
-    _strings = updatedStrings;
-    _updateStateWithStrings();
-  }
-
-  void _updateStateWithStrings() {
-    safeUpdate(() => state = state.copyWith(strings: _strings));
-  }
-
-  Future<void> _initializeApiHandler() async {
-    _apiHandler = await container.read(apiHandlerProvider.future);
-    container.listen<AsyncValue<ApiHandler>>(
-      apiHandlerProvider,
-      (_, apiHandlerValue) {
-        if (apiHandlerValue.hasValue) {
-          _apiHandler = apiHandlerValue.value!;
-        } else if (apiHandlerValue.hasError) {
-          debugPrint("Error loading ApiHandler: ${apiHandlerValue.error}");
-        }
-      },
+      loading: (prevStrings) => {{feature_name.pascalCase()}}State.data(
+        {{feature_name.pascalCase()}}Data(
+          strings: strings ?? {},
+          errors: {},
+          ),
+      ),
+      error: (message, prevStrings) => {{feature_name.pascalCase()}}State.error(
+        message,
+        strings: strings,
+      ),
+      orElse: () => state,
+      )
     );
   }
+
 }
