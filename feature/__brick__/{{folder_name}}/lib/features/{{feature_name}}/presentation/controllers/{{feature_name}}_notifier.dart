@@ -13,7 +13,7 @@ class {{feature_name.pascalCase()}}Notifier extends BaseStateNotifier<{{feature_
     safeUpdate(() => state = switch (state) {
       final {{feature_name.pascalCase()}}Data data => {{feature_name.pascalCase()}}State.data(
         strings: strings ?? data.strings,
-        validationErrors: data.errors,
+        errors: data.errors,
         ),
       final {{feature_name.pascalCase()}}StateLoading loading => {{feature_name.pascalCase()}}State.loading(strings: strings ?? loading.strings),
       final {{feature_name.pascalCase()}}StateError error => {{feature_name.pascalCase()}}State.error(

@@ -9,19 +9,19 @@ class {{feature_name.pascalCase()}}Page extends HookConsumerWidget {
     final notifier = ref.read({{feature_name.camelCase()}}NotifierProvider.notifier);
 
     final isLoading = switch (state) {
-      final {{feature_name.camelCase()}}StateLoading _ => true,
+      final {{feature_name.pascalCase()}}StateLoading _ => true,
       _ => false,
     };
 
     final data = switch (state) {
-      final {{feature_name.camelCase()}}Data data => data,
+      final {{feature_name.pascalCase()}}Data data => data,
       _ => null,
     };
 
     final strings = switch (state) {
-      final {{feature_name.camelCase()}}Data data => data.strings,
-      final {{feature_name.camelCase()}}StateLoading loading => loading.strings,
-      final {{feature_name.camelCase()}}StateError error => error.strings,
+      final {{feature_name.pascalCase()}}Data data => data.strings,
+      final {{feature_name.pascalCase()}}StateLoading loading => loading.strings,
+      final {{feature_name.pascalCase()}}StateError error => error.strings,
     } ?? {};
 
     return Scaffold(
