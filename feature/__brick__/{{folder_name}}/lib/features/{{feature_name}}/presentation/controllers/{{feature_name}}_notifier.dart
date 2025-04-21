@@ -11,10 +11,10 @@ class {{feature_name.pascalCase()}}Notifier extends BaseStateNotifier<{{feature_
   @override
   void updateStateWithStrings(Map<dynamic, String>? strings) {
     safeUpdate(() => state = switch (state) {
-      final {{feature_name.pascalCase()}}Data data => {{feature_name.pascalCase()}}State.data(
-        strings: strings ?? data.strings,
-        errors: data.errors,
-        ),
+      final {{feature_name.pascalCase()}}StateData dataState => {{feature_name.pascalCase()}}State.data({{feature_name.pascalCase()}}Data(
+          strings: strings ?? dataState.data.strings,
+          errors: dataState.data.errors,
+        )),
       final {{feature_name.pascalCase()}}StateLoading loading => {{feature_name.pascalCase()}}State.loading(strings: strings ?? loading.strings),
       final {{feature_name.pascalCase()}}StateError error => {{feature_name.pascalCase()}}State.error(
         error.message,
