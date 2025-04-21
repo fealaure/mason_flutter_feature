@@ -19,7 +19,7 @@ class {{feature_name.pascalCase()}}Page extends HookConsumerWidget {
     };
 
     final strings = switch (state) {
-      final {{feature_name.pascalCase()}}Data data => data.strings,
+      final {{feature_name.pascalCase()}}StateData dataState => dataState.data.strings,
       final {{feature_name.pascalCase()}}StateLoading loading => loading.strings,
       final {{feature_name.pascalCase()}}StateError error => error.strings,
     } ?? {};
