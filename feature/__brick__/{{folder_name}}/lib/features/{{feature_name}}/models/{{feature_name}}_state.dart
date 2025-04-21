@@ -7,12 +7,12 @@ sealed class {{feature_name.pascalCase()}}State with _${{feature_name.pascalCase
 
   const factory {{feature_name.pascalCase()}}State.loading({
     Map<dynamic, String>? strings,
-  }) = _Loading;
+  }) = {{feature_name.pascalCase()}}Loading;
 
-  const factory {{feature_name.pascalCase()}}State.data({{feature_name.pascalCase()}}Data data) = _Data;
+  const factory {{feature_name.pascalCase()}}State.data({{feature_name.pascalCase()}}Data data) = {{feature_name.pascalCase()}}Data;
 
   const factory {{feature_name.pascalCase()}}State.error(
     String message, {
     Map<dynamic, String>? strings,
-    }) = _Error;
+    }) = {{feature_name.pascalCase()}}Error;
   }
