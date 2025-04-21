@@ -9,7 +9,7 @@ sealed class {{feature_name.pascalCase()}}State with _${{feature_name.pascalCase
     Map<dynamic, String>? strings,
   }) = {{feature_name.pascalCase()}}Loading;
 
-  const factory {{feature_name.pascalCase()}}State.data({{feature_name.pascalCase()}}Data data) = {{feature_name.pascalCase()}}Data;
+  const factory {{feature_name.pascalCase()}}State.data({{feature_name.pascalCase()}}Data data) = {{feature_name.pascalCase()}}StateData;
 
   const factory {{feature_name.pascalCase()}}State.error(
     String message, {
